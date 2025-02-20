@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal ve Resim</title>
+    <style>
+        /* Sayfa tamamlayıcı stil: butonun tam ortada olması */
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Buton stil */
+        #openModalBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 10;
+        }
+
+        /* Modal için stil */
+        .modal {
+            display: none; /* Başlangıçta gizli */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Gri arka plan */
+        }
+
+        /* Modal içeriği */
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Modal'ın içinde resim */
+        .modal-content img {
+            width: 30%;
+            height: auto;
+        }
+
+        /* Modal yazısı */
+        .modal-text {
+            position: absolute;
+            top: 50%;
+            left: 15%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Kapatma butonunun stili */
+        #closeModalBtn {
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Buton -->
+    <button id="openModalBtn">Pencereyi Aç</button>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <img src="https://static9.depositphotos.com/1594920/1087/i/450/depositphotos_10876247-stock-photo-donkey-4-years.jpg" alt="Donkey">
+            <div class="modal-text">Enik Kot Meymıt Beşir</div>
+            <button id="closeModalBtn">Kapat</button>
+        </div>
+    </div>
+
+    <script>
+        // Buton ve modal öğelerini seçme
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modal = document.getElementById('myModal');
+
+        // Modal'ı açan fonksiyon
+        openModalBtn.onclick = function() {
+            modal.style.display = "block";      
+            openModalBtn.style.display = "none";
+        };
+
+        // Modal'ı kapatan fonksiyon
+        closeModalBtn.onclick = function() {
+            modal.style.display = "none";
+            openModalBtn.style.display = "block";
+        };
+
+        // Modal dışında bir yere tıklanırsa da pencereyi kapatma
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
